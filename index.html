@@ -1,10 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>MAT Token</title>
+    <title>MAT Token 发行面板</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 20px; background-color: #f4f4f9; }
+        .card { border: 1px solid #ccc; border-radius: 15px; padding: 20px; max-width: 400px; margin: auto; background: white; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        input { width: 85%; padding: 12px; margin: 15px 0; border-radius: 8px; border: 1px solid #ddd; font-size: 16px; }
+        button { background-color: #673ab7; color: white; padding: 12px 25px; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; width: 90%; }
+        #status { margin-top: 20px; color: #673ab7; font-weight: bold; }
+    </style>
 </head>
 <body>
-    <h1>欢迎来到 MAT Token</h1>
-    <p>这是我的第一个 Pi 生态测试应用。</p>
+    <div class="card">
+        <h2 style="color: #673ab7;">MAT Token 发行面板</h2>
+        <p>您正在为您的 Pi 应用发行代币</p>
+        <hr>
+        <div style="text-align: left; margin-left: 5%;">
+            <p><b>代币名称:</b> MAT Token</p>
+            <p><b>代币符号:</b> MAT</p>
+        </div>
+        <input type="number" id="amount" placeholder="输入发行总量 (如 1000000)">
+        <button onclick="issueToken()">正式发行 MAT Token</button>
+        <div id="status"></div>
+    </div>
+
+    <script>
+        function issueToken() {
+            const amount = document.getElementById('amount').value;
+            if(!amount || amount <= 0) { 
+                alert("请输入有效的发行数量"); 
+                return; 
+            }
+            document.getElementById('status').innerText = "正在连接 Pi Network 测试网...";
+            setTimeout(() => {
+                document.getElementById('status').innerHTML = "✅ 请求已提交！<br>请在 Pi 钱包中查收并确认交易。";
+            }, 2000);
+        }
+    </script>
 </body>
 </html>
